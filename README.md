@@ -11,7 +11,7 @@ A REST API for managing a shop's warehouse inventory: **items**, their **variant
 | Build          | Maven (wrapper included)                      |
 | Database       | PostgreSQL 14+ (H2 in PostgreSQL mode for tests) |
 | Migrations     | Flyway                                        |
-| API docs       | springdoc-openapi + Scalar / Swagger UI       |
+| API docs       | springdoc-openapi + Scalar                    |
 | Tests          | JUnit 5, Mockito, Spring MockMvc, AssertJ     |
 
 ## Architecture
@@ -176,8 +176,6 @@ java -jar target/warehouse-management-1.0.0.jar
 
 - API base URL: `http://localhost:8080/api`
 - API reference (Scalar): http://localhost:8080/docs
-- Swagger UI: http://localhost:8080/swagger-ui.html
-- OpenAPI JSON: http://localhost:8080/v3/api-docs
 
 ## Running Tests
 
@@ -445,7 +443,7 @@ curl -X POST http://localhost:8080/api/items \
 
 - Tests run against H2 (PostgreSQL mode), not PostgreSQL itself. The production behaviour was additionally verified manually against PostgreSQL 14, but there's no automated PostgreSQL test (e.g. Testcontainers).
 - Spring Boot 3.5 is the last 3.x line, which the assessment requires. Its open-source support has ended, so a real project should plan the move to Boot 4.
-- Swagger UI is enabled in all environments. Disable it with `springdoc.swagger-ui.enabled=false` / `springdoc.api-docs.enabled=false` where it isn't wanted.
+- The API reference (Scalar) at `/docs` is enabled in all environments. Disable it with `scalar.enabled=false` (and `springdoc.api-docs.enabled=false` to also drop the underlying OpenAPI document) where it isn't wanted.
 
 ## Future Improvements
 
